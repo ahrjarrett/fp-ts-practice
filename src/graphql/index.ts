@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { ApolloProvider } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import { Search } from '../Search'
-import { createClient } from '../client'
+export { createClient } from './client'
 
-const query = gql`
+export const query = gql`
   query RepositoryWithIssues(
     $repo: String = "rails"
     $owner: String = "rails"
@@ -52,22 +49,3 @@ const query = gql`
     }
   }
 `
-
-export const App: React.FC<{}> = () => {
-  const [client, setClient] = useState<any>(null)
-
-  // Our implementation persists the Apollo cache to localStorage to prevent calling the GitHub API too often.
-  // Because where the client serves data from depends on whether we have data in localStorage, createClient
-  // returns a Promise that resolves as soon as the store has finished persisting.
-  useEffect(() => {
-    createClient().then(client => setClient(client))
-  }, [])
-
-  return client === null ? (
-    <div>loading...</div>
-  ) : (
-      <ApolloProvider client={client}>
-        <Search query={query} />
-      </ApolloProvider>
-    )
-}

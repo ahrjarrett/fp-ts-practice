@@ -3,11 +3,10 @@ import { ApolloLink } from 'apollo-link'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory'
 import { persistCache } from 'apollo-cache-persist'
-import { setContext } from 'apollo-link-context'
-import { GITHUB_TOKEN, GRAPHQL_SERVER_ENDPOINT } from './constants/index'
 import { PersistentStorage, PersistedData } from 'apollo-cache-persist/types'
+import { setContext } from 'apollo-link-context'
 
-// PersistentStorage
+import { GITHUB_TOKEN, GRAPHQL_SERVER_ENDPOINT } from 'src/constants/index'
 
 export async function createClient() {
   const cache = new InMemoryCache()

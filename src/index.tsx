@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './App';
 
-import { GITHUB_TOKEN } from './constants'
+import { App } from 'src/components/App';
+import { GITHUB_TOKEN } from 'src/constants'
 
 console.log('GITHUB_TOKEN', GITHUB_TOKEN)
 console.log('process.env', process.env)
